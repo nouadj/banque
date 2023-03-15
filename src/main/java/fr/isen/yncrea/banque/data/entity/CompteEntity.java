@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author adjoun
+ * @author noureddine.adjou
  *
  */
 @Entity
@@ -22,6 +22,8 @@ public class CompteEntity {
 	@Column(name = "solde_compte")
 	private String soldeCompte;
 
+	@Column(name = "type_compte")
+	private String typeCompte;
 	/**
 	 * @return the id
 	 */
@@ -64,4 +66,11 @@ public class CompteEntity {
 		this.soldeCompte = soldeCompte;
 	}
 
+	public String getTypeCompte() {
+		return typeCompte;
+	}
+
+	public void setTypeCompte(String typeCompte) {
+		this.typeCompte = typeCompte;
+	}
 }

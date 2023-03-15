@@ -6,10 +6,13 @@ import fr.isen.yncrea.banque.model.dto.ClientDTO;
 
 /**
  *
- * @author adjoun
+ * @author noureddine.adjou
  *
  */
 public interface ClientService {
 
 	List<ClientDTO> getListeClient();
+
+	void ajouterClient(ClientDTO client);
+
 }

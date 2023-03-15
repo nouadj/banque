@@ -1,5 +1,7 @@
 package fr.isen.yncrea.banque.data.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,13 +9,17 @@ import javax.persistence.Table;
 
 /**
  *
- * @author adjoun
+ * @author noureddine.adjou
  *
  */
 @Entity
 @Table(name = "CLIENT")
-public class ClientEntity {
+public class ClientEntity implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "id_client")
 	private Integer id;

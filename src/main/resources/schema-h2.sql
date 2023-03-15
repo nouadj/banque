@@ -15,6 +15,7 @@ CREATE TABLE CLIENT
         id_compte NUMBER(10) NOT NULL,
         id_client NUMBER(10) NOT NULL,
         solde_compte VARCHAR2(10),
+        type_compte VARCHAR2(33),
         PRIMARY KEY(id_compte),
         foreign key (id_client) references CLIENT(id_client)
         );

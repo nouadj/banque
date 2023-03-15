@@ -6,7 +6,7 @@ import fr.isen.yncrea.banque.data.entity.ClientEntity;
 
 /**
  *
- * @author adjoun
+ * @author noureddine.adjou
  *
  */
 public class ClientDTO implements Serializable {
@@ -16,6 +16,9 @@ public class ClientDTO implements Serializable {
 	private String prenom;
 	private String adresse;
 
+	public ClientDTO() {
+		super();
+	}
 	public ClientDTO(final ClientEntity clientEntity) {
 		this.id = clientEntity.getId();
 		this.nom = clientEntity.getNom();
@@ -23,6 +26,14 @@ public class ClientDTO implements Serializable {
 		this.adresse = clientEntity.getAdresse();
 	}
 
+	public ClientEntity toEntity(){
+		ClientEntity clientEntity = new ClientEntity();
+		clientEntity.setId(id);
+		clientEntity.setNom(nom);
+		clientEntity.setPrenom(prenom);
+		clientEntity.setAdresse(adresse);
+		return clientEntity;
+	}
 	/**
 	 * @return the id
 	 */
