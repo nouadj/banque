@@ -25,4 +25,22 @@ public class CompteServiceImpl implements CompteService {
 		return this.compteRepository.findAll().stream().map(CompteDTO::new).collect(Collectors.toList());
 	}
 
+	@Override
+	public void ajouterCompte(CompteDTO compte, Integer clientId) {
+		compteRepository.save(compte.toEntity(clientId));
+	}
+
+	@Override
+	public void supprimerCompte(Integer compteId) {
+		 compteRepository.deleteById(compteId);
+	}
+
+	@Override
+	public void modifierCompte(Integer compteId, CompteDTO compte) {
+		if(compteRepository.findById(compteId)!=null){
+			//
+		}
+
+	}
+
 }

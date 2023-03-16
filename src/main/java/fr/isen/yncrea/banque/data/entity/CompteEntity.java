@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  *
@@ -12,7 +13,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "COMPTE")
-public class CompteEntity {
+public class CompteEntity implements Serializable {
 
 	@Id
 	@Column(name = "id_compte")
@@ -20,10 +21,10 @@ public class CompteEntity {
 	@Column(name = "id_client")
 	private Integer idClient;
 	@Column(name = "solde_compte")
-	private String soldeCompte;
+	private String solde;
 
 	@Column(name = "type_compte")
-	private String typeCompte;
+	private String type;
 	/**
 	 * @return the id
 	 */
@@ -55,22 +56,22 @@ public class CompteEntity {
 	/**
 	 * @return the soldeCompte
 	 */
-	public String getSoldeCompte() {
-		return this.soldeCompte;
+	public String getSolde() {
+		return this.solde;
 	}
 
 	/**
-	 * @param soldeCompte the soldeCompte to set
+	 * @param solde the soldeCompte to set
 	 */
-	public void setSoldeCompte(final String soldeCompte) {
-		this.soldeCompte = soldeCompte;
+	public void setSolde(final String solde) {
+		this.solde = solde;
 	}
 
-	public String getTypeCompte() {
-		return typeCompte;
+	public String getType() {
+		return type;
 	}
 
-	public void setTypeCompte(String typeCompte) {
-		this.typeCompte = typeCompte;
+	public void setType(String type) {
+		this.type = type;
 	}
 }

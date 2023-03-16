@@ -13,4 +13,10 @@ import java.util.List;
 public interface CompteService {
 
 	List<CompteDTO> getListeCompte();
+
+	void ajouterCompte(CompteDTO compte, Integer clientId);
+
+	void supprimerCompte(Integer compteId);
+
+	void modifierCompte(Integer compteId, CompteDTO compte);
 }

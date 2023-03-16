@@ -7,11 +7,7 @@ import fr.isen.yncrea.banque.service.CompteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import fr.isen.yncrea.banque.model.dto.ClientDTO;
 import fr.isen.yncrea.banque.service.ClientService;
@@ -22,7 +18,7 @@ import fr.isen.yncrea.banque.service.ClientService;
  *
  */
 @RestController
-//Juste pour autoriser un front ex Angular
+//Juste pour autoriser l'utilisation d'un front ex Angular
 @CrossOrigin(origins = "http://localhost:4200")
 public class ClientController {
 
@@ -32,7 +28,7 @@ public class ClientController {
 	@Autowired
 	private CompteService compteService;
 
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String hello() {
 		return "Bonjour et bienvenue à la Spring-Banque";
 	}
@@ -40,7 +36,8 @@ public class ClientController {
 	/**
 	 * Liste des clients
 	 */
-	@RequestMapping("/clients")
+	@GetMapping("/clients")
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
 	List<ClientDTO> clientIndex() {
 		return this.clientService.getListeClient();
 	}
@@ -53,14 +50,25 @@ public class ClientController {
     	this.clientService.ajouterClient(client);
         return ResponseEntity.status(HttpStatus.CREATED).body(client);
     }
-    
+
 	// Trouver un client avec son Id
-	@RequestMapping("/comptes")
-	List<CompteDTO> compteIndex() {
+	@GetMapping("/comptes")
+	List<CompteDTO> listeCompte() {
 		return this.compteService.getListeCompte();
 	}
 	
+	//Supprimer un compte
+	@DeleteMapping("/compte/{compte_id}")
+	ResponseEntity.BodyBuilder supprimerCompte(@PathVariable("compte_id") Integer compteId) {
+		this.compteService.supprimerCompte(compteId);
+		return ResponseEntity.status(HttpStatus.OK);
+	}
 
+	@PutMapping("/compte/{compte_id}")
+	ResponseEntity<CompteDTO> modifierCompte(@RequestBody CompteDTO compte,@PathVariable("compte_id") Integer compteId) {
+		this.compteService.modifierCompte(compteId,compte);
+		return ResponseEntity.status(HttpStatus.OK).body(compte);
+	}
 	// Liste des compte d'un client
 
 	// Trouver un compte avec son Id
@@ -70,7 +78,11 @@ public class ClientController {
 	// Créer un client
 
 	// Créer un compte
-
+	@PostMapping("/client/{client_id}/compte")
+	public ResponseEntity<CompteDTO> ajouterCompte(@RequestBody CompteDTO compte, @PathVariable("client_id") Integer clientId) {
+		this.compteService.ajouterCompte(compte,clientId);
+		return ResponseEntity.status(HttpStatus.CREATED).body(compte);
+	}
 	// Modifier les information d'un Client
 
 	// Débiter un Compte

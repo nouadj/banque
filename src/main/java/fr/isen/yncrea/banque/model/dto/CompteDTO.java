@@ -1,6 +1,5 @@
 package fr.isen.yncrea.banque.model.dto;
 
-import fr.isen.yncrea.banque.data.entity.ClientEntity;
 import fr.isen.yncrea.banque.data.entity.CompteEntity;
 
 import java.io.Serializable;
@@ -13,12 +12,24 @@ public class CompteDTO implements Serializable {
     private String solde;
     private String type;
 
-    public CompteDTO(final CompteEntity compteEntity) {
-        this.id = compteEntity.getId();
-        this.solde = compteEntity.getSoldeCompte();
-        this.type = compteEntity.getTypeCompte();
+    public CompteDTO() {
+        super();
     }
 
+    public CompteDTO(final CompteEntity compteEntity) {
+        this.id = compteEntity.getId();
+        this.solde = compteEntity.getSolde();
+        this.type = compteEntity.getType();
+    }
+
+    public CompteEntity toEntity(Integer idClient){
+        CompteEntity entity = new CompteEntity();
+        entity.setId(this.id);
+        entity.setIdClient(idClient);
+        entity.setSolde(this.solde);
+        entity.setType(this.type);
+        return entity;
+    }
     public Integer getId() {
         return id;
     }
