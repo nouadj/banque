@@ -19,4 +19,6 @@ public interface CompteService {
 	void supprimerCompte(Integer compteId);
 
 	void modifierCompte(Integer compteId, CompteDTO compte);
+
+	List<CompteDTO> getListeCompteJdbc();
 }

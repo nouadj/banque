@@ -15,4 +15,5 @@ public interface ClientService {
 
 	void ajouterClient(ClientDTO client);
 
+	ClientDTO getClientById( Integer id);
 }

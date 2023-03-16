@@ -1,6 +1,7 @@
 package fr.isen.yncrea.banque.service.impl;
 
-import fr.isen.yncrea.banque.data.repository.CompteRepository;
+import fr.isen.yncrea.banque.data.repository.jdbc.CompteJdbcRepository;
+import fr.isen.yncrea.banque.data.repository.jpa.CompteJpaRepository;
 import fr.isen.yncrea.banque.model.dto.CompteDTO;
 import fr.isen.yncrea.banque.service.CompteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,9 @@ import java.util.stream.Collectors;
 public class CompteServiceImpl implements CompteService {
 
 	@Autowired
-	private CompteRepository compteRepository;
-
+	private CompteJpaRepository compteRepository;
+	@Autowired
+	CompteJdbcRepository compteJdbcRepository;
 	@Override
 	public List<CompteDTO> getListeCompte() {
 		return this.compteRepository.findAll().stream().map(CompteDTO::new).collect(Collectors.toList());
@@ -41,6 +43,11 @@ public class CompteServiceImpl implements CompteService {
 			//
 		}
 
+	}
+
+	@Override
+	public List<CompteDTO> getListeCompteJdbc() {
+		return compteJdbcRepository.getAllComptes();
 	}
 
 }

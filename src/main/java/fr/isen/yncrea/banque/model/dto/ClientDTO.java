@@ -1,6 +1,7 @@
 package fr.isen.yncrea.banque.model.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import fr.isen.yncrea.banque.data.entity.ClientEntity;
 
@@ -15,6 +16,7 @@ public class ClientDTO implements Serializable {
 	private String nom;
 	private String prenom;
 	private String adresse;
+	private List<CompteDTO> comptes;
 
 	public ClientDTO() {
 		super();
@@ -90,4 +92,11 @@ public class ClientDTO implements Serializable {
 		this.adresse = adresse;
 	}
 
+	public List<CompteDTO> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(List<CompteDTO> comptes) {
+		this.comptes = comptes;
+	}
 }
