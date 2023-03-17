@@ -1,9 +1,6 @@
 package fr.isen.yncrea.banque.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -18,8 +15,9 @@ public class CompteEntity implements Serializable {
 	@Id
 	@Column(name = "id_compte")
 	private Integer id;
-	@Column(name = "id_client")
-	private Integer idClient;
+	@ManyToOne
+	@JoinColumn(name = "id_client")
+	private ClientEntity client;
 	@Column(name = "solde_compte")
 	private String solde;
 
@@ -39,18 +37,12 @@ public class CompteEntity implements Serializable {
 		this.id = id;
 	}
 
-	/**
-	 * @return the idClient
-	 */
-	public Integer getIdClient() {
-		return this.idClient;
+	public ClientEntity getClient() {
+		return client;
 	}
 
-	/**
-	 * @param idClient the idClient to set
-	 */
-	public void setIdClient(final Integer idClient) {
-		this.idClient = idClient;
+	public void setClient(ClientEntity client) {
+		this.client = client;
 	}
 
 	/**

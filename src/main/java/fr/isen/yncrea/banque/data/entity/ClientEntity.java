@@ -1,11 +1,10 @@
 package fr.isen.yncrea.banque.data.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
@@ -29,7 +28,8 @@ public class ClientEntity implements Serializable {
 	private String prenom;
 	@Column(name = "adresse")
 	private String adresse;
-
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<CompteEntity> comptes = new ArrayList<>();
 	/**
 	 * @return the id
 	 */
@@ -86,4 +86,11 @@ public class ClientEntity implements Serializable {
 		this.adresse = adresse;
 	}
 
+	public List<CompteEntity> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(List<CompteEntity> comptes) {
+		this.comptes = comptes;
+	}
 }

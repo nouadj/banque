@@ -25,11 +25,11 @@ public class CompteDTO implements Serializable {
     public CompteEntity toEntity(Integer idClient){
         CompteEntity entity = new CompteEntity();
         entity.setId(this.id);
-        entity.setIdClient(idClient);
         entity.setSolde(this.solde);
         entity.setType(this.type);
         return entity;
     }
+
     public Integer getId() {
         return id;
     }

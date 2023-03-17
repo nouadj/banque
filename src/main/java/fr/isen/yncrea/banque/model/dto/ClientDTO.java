@@ -2,6 +2,7 @@ package fr.isen.yncrea.banque.model.dto;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import fr.isen.yncrea.banque.data.entity.ClientEntity;
 
@@ -26,6 +27,7 @@ public class ClientDTO implements Serializable {
 		this.nom = clientEntity.getNom();
 		this.prenom = clientEntity.getPrenom();
 		this.adresse = clientEntity.getAdresse();
+		this.comptes=clientEntity.getComptes().stream().map(CompteDTO::new).collect(Collectors.toList());
 	}
 
 	public ClientEntity toEntity(){
@@ -34,6 +36,13 @@ public class ClientDTO implements Serializable {
 		clientEntity.setNom(nom);
 		clientEntity.setPrenom(prenom);
 		clientEntity.setAdresse(adresse);
+
+		clientEntity.setComptes(
+				comptes.stream()
+						.map(compteDTO -> compteDTO.toEntity(id))
+						.collect(Collectors.toList())
+		);
+
 		return clientEntity;
 	}
 	/**
